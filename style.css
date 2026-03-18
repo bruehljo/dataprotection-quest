@@ -1,0 +1,150 @@
+:root {
+  --bg: #dbeefd;
+  --panel: rgba(255,255,255,0.88);
+  --panel-strong: #ffffff;
+  --ink: #23395b;
+  --accent: #ffcf5a;
+  --accent-2: #7dd3fc;
+  --danger: #ef4444;
+  --success: #10b981;
+  --shadow: 0 18px 50px rgba(35,57,91,.18);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(180deg, #9fd3f7 0%, #e8f4ff 100%);
+}
+#app { display: grid; place-items: center; padding: 20px; }
+#game-shell {
+  position: relative;
+  width: min(1280px, calc(100vw - 32px));
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(180deg, rgba(255,255,255,.24), rgba(255,255,255,.12));
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+#gameCanvas { width: 100%; height: 100%; display: block; }
+.panel {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 16px;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba(255,255,255,.9);
+  border: 3px solid #425c80;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(35,57,91,.12);
+  font-size: clamp(14px, 1.2vw, 22px);
+}
+#hud-hint { text-align: right; }
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background: rgba(18,32,53,.34);
+}
+.hidden { display: none !important; }
+.window {
+  width: min(920px, 92%);
+  max-height: min(620px, calc(100% - 40px));
+  display: flex;
+  flex-direction: column;
+  background: var(--panel-strong);
+  border: 4px solid #425c80;
+  border-radius: 22px;
+  box-shadow: 0 22px 60px rgba(18,32,53,.28);
+  overflow: hidden;
+}
+.window-header {
+  background: linear-gradient(180deg, #f9d56b, #f5be38);
+  color: #24324c;
+  font-weight: 800;
+  padding: 14px 20px;
+  font-size: clamp(18px, 1.8vw, 28px);
+  border-bottom: 3px solid #425c80;
+}
+.window-body {
+  padding: 22px 24px 24px;
+  background: linear-gradient(180deg, rgba(238,247,255,.92), #ffffff);
+  overflow: auto;
+}
+.hero-window { width: min(980px, 94%); }
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: 13px;
+  color: #537096;
+  font-weight: 700;
+}
+.hero-window h1 { margin: 10px 0 14px; font-size: clamp(32px, 4vw, 60px); line-height: 1.05; }
+.hero-window p, .dialog-page, .quiz-question, .certificate p { font-size: clamp(18px, 1.5vw, 26px); line-height: 1.5; }
+.feature-list { margin: 16px 0 0 0; padding-left: 22px; font-size: 18px; line-height: 1.7; }
+.hero-actions { display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+button {
+  appearance: none;
+  border: 3px solid #425c80;
+  border-radius: 16px;
+  background: white;
+  color: var(--ink);
+  font-size: clamp(18px, 1.5vw, 24px);
+  font-weight: 800;
+  padding: 14px 20px;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+  box-shadow: 0 8px 0 #b8c9db;
+}
+button:hover { transform: translateY(-1px); }
+button:active { transform: translateY(3px); box-shadow: 0 4px 0 #b8c9db; }
+button.primary { background: linear-gradient(180deg, #7dd3fc, #60a5fa); color: #0f2541; }
+.dialog-page, .quiz-question { white-space: pre-line; }
+.dialog-footer {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+.page-indicator, .feedback { font-size: 18px; color: #537096; font-weight: 700; }
+.quiz-options {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+.quiz-options button {
+  text-align: left;
+  box-shadow: none;
+  padding: 16px 18px;
+  line-height: 1.4;
+}
+.quiz-options button.correct { background: #d1fae5; border-color: #10b981; }
+.quiz-options button.wrong { background: #fee2e2; border-color: #ef4444; }
+.score-window h2 { margin-top: 0; font-size: clamp(28px, 3vw, 42px); }
+.certificate {
+  margin: 18px 0;
+  padding: 18px;
+  border-radius: 18px;
+  border: 3px dashed #7aa1c7;
+  background: rgba(255,255,255,.8);
+}
+.small { font-size: 14px; color: #537096; }
+@media (max-width: 920px) {
+  .hero-layout { grid-template-columns: 1fr; }
+  .panel { grid-template-columns: 1fr 1fr; }
+  #hud-hint { grid-column: 1 / -1; text-align: left; }
+}

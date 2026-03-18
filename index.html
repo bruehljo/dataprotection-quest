@@ -1,21 +1,97 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Data Quest – Die Maus und das Geheimnis der Daten</title>
-  <meta name="description" content="DSGVO- und Datensicherheits-Schulung als 2D Jump'n'Run Browserspiel." />
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="game-shell">
-    <div id="game"></div>
-    <div id="fallback">
-      <h1>Data Quest</h1>
-      <p>Falls das Spiel nicht automatisch startet, stelle sicher, dass JavaScript aktiviert ist.</p>
+  <div id="app">
+    <div id="game-shell">
+      <header id="hud" class="panel hidden" aria-live="polite">
+        <div><strong>Leben</strong> <span id="hud-lives">❤❤❤</span></div>
+        <div><strong>Zeit</strong> <span id="hud-time">00:00</span></div>
+        <div><strong>Fortschritt</strong> <span id="hud-progress">0 / 7</span></div>
+        <div id="hud-hint">← → laufen · Leertaste springen · E interagieren</div>
+      </header>
+
+      <canvas id="gameCanvas" width="1280" height="720" aria-label="Spielansicht"></canvas>
+
+      <div id="menu" class="overlay">
+        <div class="window hero-window">
+          <div class="window-header">
+            <span>Data Quest – Die Maus und das Geheimnis der Daten</span>
+          </div>
+          <div class="window-body hero-layout">
+            <div>
+              <p class="eyebrow">Comic-Lernspiel zur DSGVO und Datensicherheit</p>
+              <h1>Ein Käse. Ein Tausch. Ein Fehler.</h1>
+              <p>
+                Eine Maus verrät für ein Stück Käse zu viel. Hilf ihr, die Kontrolle über ihre Daten
+                zurückzugewinnen, sieben Lernstationen zu meistern und am Ende Jörg, dem Datenschutzboss,
+                entgegenzutreten.
+              </p>
+              <ul class="feature-list">
+                <li>7 Lernstationen mit Dialogfenstern und Quiz</li>
+                <li>Bosskampf mit 5 schwierigeren Fragen</li>
+                <li>Timer, Leben und Bestzeit</li>
+              </ul>
+            </div>
+            <div class="hero-actions">
+              <button id="startIntroBtn" class="primary">Spiel starten</button>
+              <button id="skipIntroBtn">Direkt zur Schulung</button>
+              <p class="small">Ton startet nach dem ersten Klick. Läuft direkt im Browser, auch auf GitHub Pages.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="dialog" class="overlay hidden">
+        <div class="window dialog-window">
+          <div class="window-header"><span id="dialog-title">Titel</span></div>
+          <div class="window-body">
+            <div id="dialog-page" class="dialog-page"></div>
+            <div class="dialog-footer">
+              <div id="dialog-pageIndicator" class="page-indicator"></div>
+              <button id="dialog-nextBtn" class="primary">Weiter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="quiz" class="overlay hidden">
+        <div class="window quiz-window">
+          <div class="window-header"><span id="quiz-title">Frage</span></div>
+          <div class="window-body">
+            <div id="quiz-question" class="quiz-question"></div>
+            <div id="quiz-options" class="quiz-options"></div>
+            <div class="dialog-footer">
+              <div id="quiz-feedback" class="feedback"></div>
+              <button id="quiz-nextBtn" class="primary hidden">Nächste Frage</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="score" class="overlay hidden">
+        <div class="window score-window">
+          <div class="window-header"><span>Schulung abgeschlossen</span></div>
+          <div class="window-body">
+            <h2>Zertifikat: Datenschutz-Abenteuer bestanden</h2>
+            <p id="score-text"></p>
+            <div class="certificate">
+              <h3>Teilnahmebescheinigung</h3>
+              <p>Die Maus hat alle Stationen erfolgreich absolviert, den Datenschutzboss besiegt und die Katze mit dem Bescheid der Datenschutzbehörde überrascht.</p>
+            </div>
+            <div class="hero-actions">
+              <button id="retryBtn" class="primary">Erneut spielen</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/phaser@3.90.0/dist/phaser.min.js"></script>
-  <script type="module" src="./js/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

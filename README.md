@@ -1,58 +1,32 @@
-# Data Quest – Die Maus und das Geheimnis der Daten
+# Data Quest – Die Maus und das Geheimnis der Daten (v8)
 
-Ein browserbasiertes 2D-Jump'n'Run für GitHub Pages zur DSGVO- und Datensicherheits-Schulung.
+## Konzept
+Diese Version wurde als saubere Neuimplementierung ohne externe Game-Engine gebaut, damit sie direkt auf GitHub Pages läuft und keine CDN- oder Phaser-Fehler mehr produziert.
 
-## Neu in dieser Ausbaustufe
+### Gestaltungsprinzipien
+- **Lernen und Spiel sind getrennt**: Das Level bleibt frei von langen Textblöcken. Inhalte erscheinen ausschließlich in Dialogfenstern.
+- **Jede Station ist ein klares Mini-Event**: Leuchtende Stationsterminals, Interaktionshinweis, danach Dialogseiten und Quiz.
+- **Lesbarkeit zuerst**: Mehrseitige Fenster, klare Überschriften, große Buttons, kein Überlagern der Spielwelt.
+- **Einheitliche Dramaturgie**: Intro → 7 Stationen → Bosskampf → Finale → Zertifikats-Screen.
+- **GitHub-Pages-tauglich**: Keine Build-Schritte, kein Bundler, kein CDN.
 
-- detailliertere Comic-Illustrationen für Maus, Katze, Boss und Spielwelt
-- weichere Sprungsteuerung mit Jump-Buffer und Coyote-Time für bessere Spielbarkeit
-- zusätzliche Leitführung im HUD: aktuelles Ziel und Pfeil zur nächsten Station
-- leicht entschärfte Endzone mit zusätzlichen Plattformen vor dem Bossbereich
-- stärkeres Feedback bei Checkpoints, Bossfreischaltung und Lernfortschritt
-- Zertifikats-Finale mit Bestzeit, Punkten und Auszeichnung
+### Leveldesign
+- Eine lange 2D-Welt mit acht Themenzonen
+- Jede Zone hat eine eigene visuelle Kulisse (Grundrechte, Daten, Rollen, Rechtsgrundlagen, Rechte, Unternehmen, Sicherheit, Boss)
+- Gut sichtbare Plattformen, klare Wege, Interaktionsprompt in der Nähe einer Station
+- Fortschrittsleiste unten im Spiel, HUD oben
 
-## Technische Prüfung
+### Steuerung
+- Pfeiltasten / A,D: laufen
+- Leertaste: springen
+- E: Station, Boss oder Finale auslösen
 
-- JavaScript-Dateien per `node --check` auf Syntax geprüft
-- Lerninhalte als ES-Module erfolgreich geladen
-- alle referenzierten Asset-Dateien im Projekt vorhanden
+## Veröffentlichung auf GitHub Pages
+1. Dateien dieses Ordners in ein öffentliches GitHub-Repository hochladen.
+2. In **Settings → Pages** `Deploy from a branch` wählen.
+3. Branch `main`, Folder `/ (root)` speichern.
+4. Seite mit Strg+F5 neu laden.
 
-Hinweis: Für einen vollständigen Browser-Playtest wird Phaser zur Laufzeit aus einem CDN geladen. In GitHub Pages funktioniert das normal. In einer strikt offline Umgebung ohne DNS/Internet kann der automatische Laufzeittest deshalb nicht vollständig ausgeführt werden.
-
-## Steuerung
-
-- Bewegen: Pfeiltasten oder A / D
-- Springen: Pfeil hoch, W oder Leertaste
-- Hilfe: H
-- Pause: ESC oder P
-
-## Spielziel
-
-1. Intro ansehen oder direkt ins Spiel springen.
-2. Alle sieben Lernstationen erreichen.
-3. An jeder Station die Lernkarte lesen und drei Fragen beantworten.
-4. Vor dem Finale Jörg, den Datenschutzboss, im Bosskampf besiegen.
-5. Am Ende der Katze den Bescheid der Datenschutzbehörde übergeben.
-
-## Spielregeln
-
-- 3 Leben pro Durchlauf
-- falsche Antworten oder Abstürze kosten ein Leben
-- bei 0 Leben startet die gesamte Schulung neu
-- Bonuskäse erhöht die Punktzahl
-- Bestzeit wird lokal im Browser gespeichert
-
-## GitHub Pages Deployment
-
-1. Repository anlegen und Projektdateien hochladen.
-2. In GitHub unter **Settings > Pages** als Source den Branch mit `/ (root)` wählen.
-3. Nach dem Deploy ist das Spiel direkt über GitHub Pages erreichbar.
-
-## Projektstruktur
-
-- `index.html` – Einstiegspunkt
-- `styles.css` – Layout
-- `js/content.js` – Lerninhalte, Quizfragen, Bossfragen
-- `js/main.js` – Spiellogik und Szenen
-- `assets/images/` – Comicgrafiken
-- `assets/audio/` – Musik und Soundeffekte
+## Hinweise
+- Audio wird vom Browser erst nach einem Klick freigegeben.
+- Die Bestzeit wird im Browser per `localStorage` gespeichert.
