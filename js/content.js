@@ -2,7 +2,7 @@ export const introOverlayText = {
   title: 'Ein Käse. Ein Tausch. Ein Fehler.',
   body: `Für ein kleines Stück Käse hat die Maus mehr preisgegeben, als es auf den ersten Blick scheint.
 
-Vor- und Nachname, postalische Anschrift, Hobbys und E-Mail-Adressen reichen oft bereits aus, um eine Person eindeutig zuzuordnen, Kontakt aufzunehmen, Profile zu bilden und Vertrauen auszunutzen. Solche Daten können für personalisierte Phishing-Nachrichten, Identitätsmissbrauch, Social Engineering, ungewollte Werbung, Scoring oder die Verknüpfung mit weiteren Informationen genutzt werden.
+Vor- und Nachname, postalische Anschrift, Hobbys und E-Mail-Adresse reichen oft schon aus, um eine Person eindeutig zuzuordnen, Kontakt aufzunehmen, Profile zu bilden und Vertrauen auszunutzen. Solche Daten können für personalisierte Phishing-Nachrichten, Identitätsmissbrauch, Social Engineering, ungewollte Werbung, Scoring oder die Verknüpfung mit weiteren Informationen genutzt werden.
 
 Gerade die Kombination aus Identitätsdaten, Kontaktinformationen und Alltagswissen macht Menschen angreifbar. Wer weiß, wie jemand heißt, wo diese Person erreichbar ist und wofür sie sich interessiert, kann glaubwürdige Nachrichten formulieren, sich als vertrauenswürdige Stelle ausgeben oder sensible Folgeinformationen abfragen.
 

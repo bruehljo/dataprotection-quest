@@ -83,19 +83,37 @@ class BaseScene extends Phaser.Scene {
       fontFamily: 'Arial', fontSize: '31px', color: '#213047', fontStyle: 'bold', wordWrap: { width: w - 56 }
     });
     const bodyText = this.add.text(-w / 2 + 28, -h / 2 + 78, body, {
-      fontFamily: 'Arial', fontSize: '22px', color: '#213047', wordWrap: { width: w - 56 }, lineSpacing: 6
+      fontFamily: 'Arial', fontSize: scrollable ? '19px' : '22px', color: '#213047', wordWrap: { width: w - 64 }, lineSpacing: 8
     });
-    container.add([shadow, bg, header, titleText, bodyText]);
+
+    const bodyClip = this.add.zone(-w / 2 + 24, -h / 2 + 76, w - 48, h - 116).setOrigin(0, 0);
+    const maskShape = this.make.graphics({ x: 0, y: 0, add: false });
+    maskShape.fillStyle(0xffffff, 1);
+    maskShape.fillRect(x - w / 2 + 24, y - h / 2 + 76, w - 48, h - 116);
+    bodyText.setMask(maskShape.createGeometryMask());
+
+    container.add([shadow, bg, header, titleText, bodyClip, bodyText]);
     if (scrollable) {
       container.setData('baseY', bodyText.y);
-      bodyText.setInteractive(new Phaser.Geom.Rectangle(bodyText.x, bodyText.y, w - 56, h - 118), Phaser.Geom.Rectangle.Contains);
+      bodyClip.setInteractive({ useHandCursor: false });
       const wheelHandler = (pointer, objects, dx, dy) => {
         if (!container.visible || !container.active) return;
-        const minY = -Math.max(h * 0.95, bodyText.height - (h - 150));
-        bodyText.y = Phaser.Math.Clamp(bodyText.y - dy * 0.3, minY, container.getData('baseY'));
+        const worldPoint = pointer.positionToCamera(this.cameras.main);
+        const withinX = worldPoint.x >= x - w / 2 + 24 && worldPoint.x <= x + w / 2 - 24;
+        const withinY = worldPoint.y >= y - h / 2 + 76 && worldPoint.y <= y + h / 2 - 40;
+        if (!withinX || !withinY) return;
+        const visibleHeight = h - 132;
+        const overflow = Math.max(0, bodyText.height - visibleHeight);
+        const minY = container.getData('baseY') - overflow;
+        bodyText.y = Phaser.Math.Clamp(bodyText.y - dy * 0.35, minY, container.getData('baseY'));
       };
       this.input.on('wheel', wheelHandler);
-      container.once('destroy', () => this.input.off('wheel', wheelHandler));
+      container.once('destroy', () => {
+        this.input.off('wheel', wheelHandler);
+        maskShape.destroy();
+      });
+    } else {
+      container.once('destroy', () => maskShape.destroy());
     }
     return container;
   }
@@ -300,8 +318,9 @@ class IntroScene extends BaseScene {
     });
     speech.add([bubble, speechText]);
 
-    const overlay = this.panel(640, 348, 1020, 560, introOverlayText.title, introOverlayText.body, true).setVisible(false).setDepth(30);
-    const overlayBtn = this.createButton(640, 620, 300, 66, 'Zur Schulung', async () => {
+    const overlayDim = this.add.rectangle(640, 360, 1280, 720, 0x213047, 0.42).setVisible(false).setDepth(29);
+    const overlay = this.panel(640, 320, 1020, 500, introOverlayText.title, introOverlayText.body, true).setVisible(false).setDepth(30);
+    const overlayBtn = this.createButton(640, 648, 300, 66, 'Zur Schulung', async () => {
       await enableAudio(this);
       this.ensureMusic();
       this.scene.start('PlayScene');
@@ -334,6 +353,7 @@ class IntroScene extends BaseScene {
       });
       this.time.delayedCall(8600, () => {
         speech.setVisible(false);
+        overlayDim.setVisible(true);
         overlay.setVisible(true);
         overlayBtn.setVisible(true);
       });
