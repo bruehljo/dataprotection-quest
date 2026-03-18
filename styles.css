@@ -1,0 +1,37 @@
+:root {
+  --bg1: #8fd3ff;
+  --bg2: #f7fbff;
+  --panel: rgba(255,255,255,0.92);
+  --ink: #213047;
+  --accent: #ffb703;
+  --danger: #ef476f;
+  --ok: #06d6a0;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: linear-gradient(180deg, var(--bg1), var(--bg2));
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ink);
+}
+#game-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+#game {
+  width: min(100%, 1280px);
+  aspect-ratio: 16 / 9;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.2);
+  background: #bde7ff;
+}
+#fallback {
+  display: none;
+}
+canvas { display: block; }
