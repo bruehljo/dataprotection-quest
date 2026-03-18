@@ -576,7 +576,8 @@ class PlayScene extends BaseScene {
       { x: 7420, y: 300, dx: 160, dy: 0, duration: 1900 }
     ];
     defs.forEach((def) => {
-      const sprite = this.physics.add.image(def.x, def.y, 'movingPlatform').setImmovable(true).setAllowGravity(false).setDepth(4);
+      const sprite = this.physics.add.image(def.x, def.y, 'movingPlatform').setImmovable(true).setDepth(4);
+      sprite.body.setAllowGravity(false);
       sprite.body.moves = false;
       this.movingPlatforms.push({ sprite, def });
       this.tweens.add({
@@ -597,7 +598,8 @@ class PlayScene extends BaseScene {
       [530, 430], [1540, 450], [2260, 300], [3360, 440], [4170, 400], [5060, 450], [5900, 395], [6720, 450], [7520, 370]
     ];
     positions.forEach(([x, y]) => {
-      const cheese = this.physics.add.image(x, y, 'cheese').setScale(0.32).setAllowGravity(false).setImmovable(true).setDepth(5);
+      const cheese = this.physics.add.image(x, y, 'cheese').setScale(0.32).setImmovable(true).setDepth(5);
+      cheese.body.setAllowGravity(false);
       cheese.body.moves = false;
       cheese.setData('collected', false);
       this.tweens.add({ targets: cheese, y: y - 12, duration: 900 + x % 400, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
