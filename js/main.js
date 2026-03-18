@@ -44,6 +44,27 @@ function formatTime(ms) {
   return `${minutes}:${seconds}`;
 }
 
+function splitIntoPages(text, maxChars = 360) {
+  const paragraphs = String(text).split(/
++/).map((p) => p.trim()).filter(Boolean);
+  if (!paragraphs.length) return [''];
+  const pages = [];
+  let current = '';
+  for (const paragraph of paragraphs) {
+    const candidate = current ? `${current}
+
+${paragraph}` : paragraph;
+    if (candidate.length <= maxChars || !current) {
+      current = candidate;
+    } else {
+      pages.push(current);
+      current = paragraph;
+    }
+  }
+  if (current) pages.push(current);
+  return pages;
+}
+
 async function enableAudio(scene) {
   try {
     await scene.sound.context.resume();
@@ -74,48 +95,76 @@ class BaseScene extends Phaser.Scene {
     return container;
   }
 
-  panel(x, y, w, h, title, body, scrollable = false) {
+  panel(x, y, w, h, title, body) {
     const container = this.add.container(x, y).setScrollFactor(0);
-    const shadow = this.add.rectangle(10, 10, w, h, 0x000000, 0.22).setOrigin(0.5);
-    const bg = this.add.rectangle(0, 0, w, h, 0xfffcf2, 0.98).setStrokeStyle(6, 0x355070).setOrigin(0.5);
-    const header = this.add.rectangle(0, -h / 2 + 38, w - 18, 58, 0x8ecae6, 0.95).setOrigin(0.5);
-    const titleText = this.add.text(-w / 2 + 28, -h / 2 + 14, title, {
+    const shadow = this.add.rectangle(10, 10, w, h, 0x000000, 0.24).setOrigin(0.5);
+    const bg = this.add.rectangle(0, 0, w, h, 0xfffcf2, 0.985).setStrokeStyle(6, 0x355070).setOrigin(0.5);
+    const header = this.add.rectangle(0, -h / 2 + 40, w - 18, 60, 0x8ecae6, 0.96).setOrigin(0.5);
+    const titleText = this.add.text(-w / 2 + 28, -h / 2 + 12, title, {
       fontFamily: 'Arial', fontSize: '31px', color: '#213047', fontStyle: 'bold', wordWrap: { width: w - 56 }
     });
-    const bodyText = this.add.text(-w / 2 + 28, -h / 2 + 78, body, {
-      fontFamily: 'Arial', fontSize: scrollable ? '19px' : '22px', color: '#213047', wordWrap: { width: w - 64 }, lineSpacing: 8
+    const bodyText = this.add.text(-w / 2 + 30, -h / 2 + 86, body, {
+      fontFamily: 'Arial', fontSize: '22px', color: '#213047', wordWrap: { width: w - 76 }, lineSpacing: 10,
+      maxLines: Math.max(3, Math.floor((h - 190) / 34))
     });
-
-    const bodyClip = this.add.zone(-w / 2 + 24, -h / 2 + 76, w - 48, h - 116).setOrigin(0, 0);
-    const maskShape = this.make.graphics({ x: 0, y: 0, add: false });
-    maskShape.fillStyle(0xffffff, 1);
-    maskShape.fillRect(x - w / 2 + 24, y - h / 2 + 76, w - 48, h - 116);
-    bodyText.setMask(maskShape.createGeometryMask());
-
-    container.add([shadow, bg, header, titleText, bodyClip, bodyText]);
-    if (scrollable) {
-      container.setData('baseY', bodyText.y);
-      bodyClip.setInteractive({ useHandCursor: false });
-      const wheelHandler = (pointer, objects, dx, dy) => {
-        if (!container.visible || !container.active) return;
-        const worldPoint = pointer.positionToCamera(this.cameras.main);
-        const withinX = worldPoint.x >= x - w / 2 + 24 && worldPoint.x <= x + w / 2 - 24;
-        const withinY = worldPoint.y >= y - h / 2 + 76 && worldPoint.y <= y + h / 2 - 40;
-        if (!withinX || !withinY) return;
-        const visibleHeight = h - 132;
-        const overflow = Math.max(0, bodyText.height - visibleHeight);
-        const minY = container.getData('baseY') - overflow;
-        bodyText.y = Phaser.Math.Clamp(bodyText.y - dy * 0.35, minY, container.getData('baseY'));
-      };
-      this.input.on('wheel', wheelHandler);
-      container.once('destroy', () => {
-        this.input.off('wheel', wheelHandler);
-        maskShape.destroy();
-      });
-    } else {
-      container.once('destroy', () => maskShape.destroy());
-    }
+    container.add([shadow, bg, header, titleText, bodyText]);
     return container;
+  }
+
+  createPagedDialog({ title, pages, width = 980, height = 430, y = 316, depth = 40, dimAlpha = 0.46, nextLabel = 'Weiter', finishLabel = 'Weiter', onFinish, onClose = null }) {
+    const safePages = Array.isArray(pages) && pages.length ? pages : [''];
+    const dim = this.add.rectangle(GAME_WIDTH / 2, GAME_HEIGHT / 2, GAME_WIDTH, GAME_HEIGHT, 0x000000, dimAlpha)
+      .setScrollFactor(0)
+      .setDepth(depth - 1)
+      .setInteractive();
+
+    let pageIndex = 0;
+    let panel = null;
+    let pageText = null;
+    let backBtn = null;
+    let nextBtn = null;
+
+    const destroyAll = () => {
+      if (panel) panel.destroy();
+      if (pageText) pageText.destroy();
+      if (backBtn) backBtn.destroy();
+      if (nextBtn) nextBtn.destroy();
+      dim.destroy();
+      if (onClose) onClose();
+    };
+
+    const render = () => {
+      if (panel) panel.destroy();
+      if (pageText) pageText.destroy();
+      if (backBtn) backBtn.destroy();
+      if (nextBtn) nextBtn.destroy();
+
+      panel = this.panel(GAME_WIDTH / 2, y, width, height, title, safePages[pageIndex]).setDepth(depth);
+      pageText = this.add.text(GAME_WIDTH / 2, y + height / 2 - 52, `Seite ${pageIndex + 1}/${safePages.length}`, {
+        fontFamily: 'Arial', fontSize: '20px', color: '#4a6077', fontStyle: 'bold'
+      }).setOrigin(0.5).setScrollFactor(0).setDepth(depth + 1);
+
+      if (safePages.length > 1 && pageIndex > 0) {
+        backBtn = this.createButton(430, y + height / 2 - 18, 180, 54, 'Zurück', () => {
+          pageIndex -= 1;
+          render();
+        }, 0xdceaf4, 22).setDepth(depth + 1);
+      }
+
+      const isLast = pageIndex === safePages.length - 1;
+      nextBtn = this.createButton(850, y + height / 2 - 18, 240, 54, isLast ? finishLabel : nextLabel, () => {
+        if (isLast) {
+          destroyAll();
+          if (onFinish) onFinish();
+        } else {
+          pageIndex += 1;
+          render();
+        }
+      }, 0x8ecae6, 22).setDepth(depth + 1);
+    };
+
+    render();
+    return { destroy: destroyAll };
   }
 
   playSfx(key, config = {}) {
@@ -291,16 +340,12 @@ class IntroScene extends BaseScene {
       this.tweens.add({ targets: cloud, x: cloud.x + 34, duration: 4600 + i * 400, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
     }
 
-    this.add.text(38, 30, 'Data Quest – Die Maus und das Geheimnis der Daten', {
-      fontFamily: 'Arial', fontSize: '42px', color: '#213047', fontStyle: 'bold'
+    this.add.text(50, 42, 'Data Quest', {
+      fontFamily: 'Arial', fontSize: '50px', color: '#213047', fontStyle: 'bold'
     });
-    this.add.text(38, 84, 'DSGVO- und Datensicherheitsschulung als Comic-Jump’n’Run', {
+    this.add.text(50, 98, 'DSGVO- und Datensicherheitsschulung als Comic-Jump’n’Run', {
       fontFamily: 'Arial', fontSize: '24px', color: '#213047'
     });
-
-    const titlePanel = this.panel(640, 344, 860, 210,
-      'Startsequenz',
-      'Die Maus wird mit Käse gelockt und verrät persönliche Daten. Danach beginnt die Schulung. Der Stil ist spielerisch, die Inhalte sind fachlich sauber. Mit aktiviertem Audio wirken Intro, Bosskampf und Finale deutlich lebendiger.');
 
     const mouse = this.add.image(224, 552, 'mouse').setScale(0.95).setDepth(4);
     const cat = this.add.image(1100, 534, 'cat').setScale(0.95).setFlipX(true).setDepth(4);
@@ -318,16 +363,42 @@ class IntroScene extends BaseScene {
     });
     speech.add([bubble, speechText]);
 
-    const overlayDim = this.add.rectangle(640, 360, 1280, 720, 0x213047, 0.42).setVisible(false).setDepth(29);
-    const overlay = this.panel(640, 320, 1020, 500, introOverlayText.title, introOverlayText.body, true).setVisible(false).setDepth(30);
-    const overlayBtn = this.createButton(640, 648, 300, 66, 'Zur Schulung', async () => {
-      await enableAudio(this);
-      this.ensureMusic();
-      this.scene.start('PlayScene');
-    }, 0x8ecae6).setVisible(false).setDepth(31);
+    const launchDialog = this.createPagedDialog({
+      title: 'Spielstart',
+      pages: [
+        'Willkommen bei Data Quest. Du steuerst eine Maus durch eine DSGVO- und Datensicherheits-Schulung im Stil eines 2D-Jump’n’Run. Jede Station erklärt ein Thema in kurzen Fenstern – ohne Text direkt im Level.',
+        'Du hast 3 Leben. Falsche Antworten und Abstürze kosten ein Leben. Nach jeder Themenstation beantwortest du 3 Multiple-Choice-Fragen. Vor dem Finale wartet Jörg, der Datenschutzboss, mit 5 schwereren Fragen.'
+      ],
+      width: 960,
+      height: 420,
+      finishLabel: 'Startoptionen',
+      onFinish: () => showLaunchButtons()
+    });
+
+    const showLaunchButtons = () => {
+      this.createPagedDialog({
+        title: 'Bereit?',
+        pages: ['Du kannst die Geschichte direkt im Intro ansehen oder sofort in die Schulung springen. Das Spiel startet nach einem Klick zuverlässig und alle längeren Texte erscheinen ab jetzt nur noch in durchklickbaren Dialogfenstern.'],
+        width: 920,
+        height: 350,
+        finishLabel: 'Optionen anzeigen',
+        onFinish: () => {
+          this.createButton(330, 622, 290, 68, 'Intro ansehen', () => introSequence(), 0xffc857).setDepth(50);
+          this.createButton(640, 622, 260, 68, state.audioEnabled ? 'Audio an/aus' : 'Audio aktivieren', async () => {
+            await enableAudio(this);
+            this.ensureMusic();
+            this.scene.restart();
+          }, 0x90be6d).setDepth(50);
+          this.createButton(952, 622, 320, 68, 'Spiel direkt starten', async () => {
+            await enableAudio(this);
+            this.ensureMusic();
+            this.scene.start('PlayScene');
+          }, 0x8ecae6).setDepth(50);
+        }
+      });
+    };
 
     const introSequence = async () => {
-      titlePanel.setVisible(false);
       await enableAudio(this);
       this.ensureMusic();
       this.tweens.add({ targets: cat, x: 804, duration: 2200, ease: 'Sine.easeInOut' });
@@ -353,23 +424,20 @@ class IntroScene extends BaseScene {
       });
       this.time.delayedCall(8600, () => {
         speech.setVisible(false);
-        overlayDim.setVisible(true);
-        overlay.setVisible(true);
-        overlayBtn.setVisible(true);
+        this.createPagedDialog({
+          title: introOverlayText.title,
+          pages: splitIntoPages(introOverlayText.body, 420),
+          width: 1020,
+          height: 500,
+          finishLabel: 'Zur Schulung',
+          onFinish: async () => {
+            await enableAudio(this);
+            this.ensureMusic();
+            this.scene.start('PlayScene');
+          }
+        });
       });
     };
-
-    this.createButton(330, 620, 300, 66, 'Intro abspielen', introSequence);
-    this.createButton(640, 620, 250, 66, state.audioEnabled ? 'Audio aktiv' : 'Audio aktivieren', async () => {
-      await enableAudio(this);
-      this.ensureMusic();
-      this.scene.restart();
-    }, 0x90be6d);
-    this.createButton(950, 620, 320, 66, 'Direkt zum Spiel', async () => {
-      await enableAudio(this);
-      this.ensureMusic();
-      this.scene.start('PlayScene');
-    }, 0xffb703);
   }
 }
 
@@ -869,37 +937,38 @@ class PlayScene extends BaseScene {
     this.physics.world.pause();
     this.player.body.setVelocity(0, 0);
     const station = stations[index];
-    const panel = this.panel(640, 300, 1000, 450, station.title, station.lesson, true).setDepth(30);
-    const hint = this.add.text(640, 490, 'Danach folgen 3 Multiple-Choice-Fragen.', {
-      fontFamily: 'Arial', fontSize: '24px', color: '#213047', fontStyle: 'bold'
-    }).setOrigin(0.5).setScrollFactor(0).setDepth(31);
-    const btn = this.createButton(640, 580, 280, 60, 'Fragen starten', () => {
-      panel.destroy();
-      hint.destroy();
-      btn.destroy();
-      this.askQuestions(station, 0, () => {
-        state.currentStation += 1;
-        state.lastCheckpointX = station.x + 100;
-        state.score += 150;
-        state.stationStars += 1;
-        this.stationStars[index].setAlpha(1).setScale(1.05);
-        this.stationFlags[index].setAlpha(1).setScale(0.58);
-        this.tweens.add({ targets: [this.stationStars[index], this.stationFlags[index]], scale: '+=0.18', yoyo: true, duration: 260 });
-        this.sparkleBurst(station.x, 520, station.color);
-        this.showObjectiveToast(index + 1 < stations.length ? `Station geschafft – weiter zu ${stations[index + 1].theme}` : 'Alle Stationen gemeistert – ab zum Boss!');
-        this.physics.world.resume();
-        this.blockingOverlay = false;
-      });
-    }).setDepth(31);
+    this.createPagedDialog({
+      title: station.title,
+      pages: [...splitIntoPages(station.lesson, 380), 'Danach folgen 3 Multiple-Choice-Fragen.'],
+      width: 1000,
+      height: 450,
+      depth: 30,
+      finishLabel: 'Fragen starten',
+      onFinish: () => {
+        this.askQuestions(station, 0, () => {
+          state.currentStation += 1;
+          state.lastCheckpointX = station.x + 100;
+          state.score += 150;
+          state.stationStars += 1;
+          this.stationStars[index].setAlpha(1).setScale(1.05);
+          this.stationFlags[index].setAlpha(1).setScale(0.58);
+          this.tweens.add({ targets: [this.stationStars[index], this.stationFlags[index]], scale: '+=0.18', yoyo: true, duration: 260 });
+          this.sparkleBurst(station.x, 520, station.color);
+          this.showObjectiveToast(index + 1 < stations.length ? `Station geschafft – weiter zu ${stations[index + 1].theme}` : 'Alle Stationen gemeistert – ab zum Boss!');
+          this.physics.world.resume();
+          this.blockingOverlay = false;
+        });
+      }
+    });
   }
 
   askQuestions(station, questionIndex, onDone) {
     const q = station.questions[questionIndex];
     const blocker = this.add.rectangle(640, 360, 1280, 720, 0x000000, 0.42).setScrollFactor(0).setDepth(35);
-    const panel = this.panel(640, 316, 960, 470, `${station.title} – Frage ${questionIndex + 1}/3`, q.question).setDepth(36);
+    const panel = this.panel(640, 290, 980, 360, `${station.title} – Frage ${questionIndex + 1}/3`, q.question).setDepth(36);
     const buttons = [];
     q.options.forEach((opt, idx) => {
-      const btn = this.createButton(640, 438 + idx * 78, 760, 60, `${String.fromCharCode(65 + idx)}) ${opt}`, () => {
+      const btn = this.createButton(640, 420 + idx * 82, 800, 62, `${String.fromCharCode(65 + idx)}) ${opt}`, () => {
         buttons.forEach((b) => b.destroy());
         const correct = idx === q.correct;
         if (correct) state.score += 50;
@@ -938,32 +1007,38 @@ class PlayScene extends BaseScene {
     this.bossHp = bossFight.questions.length;
     this.tweens.add({ targets: this.boss, scale: 0.95, duration: 180, yoyo: true, repeat: 4 });
     this.tweens.add({ targets: [this.bossAura, this.bossAura2], scale: '+=0.08', alpha: { from: 0.35, to: 0.9 }, duration: 420, yoyo: true, repeat: 4 });
-    const intro = this.panel(640, 290, 1000, 360, bossFight.title, bossFight.intro, true).setDepth(40);
     const bossBarBg = this.add.rectangle(640, 176, 440, 24, 0x213047, 0.9).setScrollFactor(0).setDepth(41);
     const bossBarFill = this.add.rectangle(420, 176, 436, 18, 0xe63946, 1).setOrigin(0, 0.5).setScrollFactor(0).setDepth(42);
     const hpLabel = this.add.text(640, 448, `Jörgs Prüfungsenergie: ${this.bossHp}/5`, {
       fontFamily: 'Arial', fontSize: '24px', color: '#213047', fontStyle: 'bold'
     }).setOrigin(0.5).setScrollFactor(0).setDepth(41);
-    const btn = this.createButton(640, 512, 300, 60, 'Bossfragen starten', () => {
-      intro.destroy();
-      hpLabel.destroy();
-      bossBarBg.destroy();
-      bossBarFill.destroy();
-      btn.destroy();
-      this.askBossQuestion(0);
-    }, 0xe76f51).setDepth(41);
+    this.createPagedDialog({
+      title: bossFight.title,
+      pages: splitIntoPages(bossFight.intro, 360),
+      width: 1000,
+      height: 360,
+      y: 290,
+      depth: 40,
+      finishLabel: 'Bossfragen starten',
+      onFinish: () => {
+        hpLabel.destroy();
+        bossBarBg.destroy();
+        bossBarFill.destroy();
+        this.askBossQuestion(0);
+      }
+    });
   }
 
   askBossQuestion(index) {
     const q = bossFight.questions[index];
     const blocker = this.add.rectangle(640, 360, 1280, 720, 0x000000, 0.54).setScrollFactor(0).setDepth(42);
-    const panel = this.panel(640, 320, 980, 510, `Bosskampf – Frage ${index + 1}/5`, q.question).setDepth(43);
+    const panel = this.panel(640, 300, 1000, 370, `Bosskampf – Frage ${index + 1}/5`, q.question).setDepth(43);
     const hp = this.add.text(640, 210, `Jörg hält noch ${this.bossHp} Prüfungsrunde(n) durch`, {
       fontFamily: 'Arial', fontSize: '24px', color: '#fffcf2', fontStyle: 'bold'
     }).setOrigin(0.5).setScrollFactor(0).setDepth(44);
     const buttons = [];
     q.options.forEach((opt, idx) => {
-      const btn = this.createButton(640, 444 + idx * 78, 800, 58, `${String.fromCharCode(65 + idx)}) ${opt}`, () => {
+      const btn = this.createButton(640, 430 + idx * 82, 820, 60, `${String.fromCharCode(65 + idx)}) ${opt}`, () => {
         buttons.forEach((b) => b.destroy());
         const correct = idx === q.correct;
         if (correct) {
