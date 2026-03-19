@@ -1,32 +1,30 @@
-# Data Quest – Die Maus und das Geheimnis der Daten (v8)
+# Data Quest v9 – Comic-Welt
 
-## Konzept
-Diese Version wurde als saubere Neuimplementierung ohne externe Game-Engine gebaut, damit sie direkt auf GitHub Pages läuft und keine CDN- oder Phaser-Fehler mehr produziert.
-
-### Gestaltungsprinzipien
-- **Lernen und Spiel sind getrennt**: Das Level bleibt frei von langen Textblöcken. Inhalte erscheinen ausschließlich in Dialogfenstern.
-- **Jede Station ist ein klares Mini-Event**: Leuchtende Stationsterminals, Interaktionshinweis, danach Dialogseiten und Quiz.
-- **Lesbarkeit zuerst**: Mehrseitige Fenster, klare Überschriften, große Buttons, kein Überlagern der Spielwelt.
-- **Einheitliche Dramaturgie**: Intro → 7 Stationen → Bosskampf → Finale → Zertifikats-Screen.
-- **GitHub-Pages-tauglich**: Keine Build-Schritte, kein Bundler, kein CDN.
-
-### Leveldesign
-- Eine lange 2D-Welt mit acht Themenzonen
-- Jede Zone hat eine eigene visuelle Kulisse (Grundrechte, Daten, Rollen, Rechtsgrundlagen, Rechte, Unternehmen, Sicherheit, Boss)
-- Gut sichtbare Plattformen, klare Wege, Interaktionsprompt in der Nähe einer Station
-- Fortschrittsleiste unten im Spiel, HUD oben
-
-### Steuerung
-- Pfeiltasten / A,D: laufen
-- Leertaste: springen
-- E: Station, Boss oder Finale auslösen
+Diese Version ist ein interaktives Comic-Spiel ohne externe Game-Engine.
 
 ## Veröffentlichung auf GitHub Pages
-1. Dateien dieses Ordners in ein öffentliches GitHub-Repository hochladen.
-2. In **Settings → Pages** `Deploy from a branch` wählen.
-3. Branch `main`, Folder `/ (root)` speichern.
-4. Seite mit Strg+F5 neu laden.
 
-## Hinweise
-- Audio wird vom Browser erst nach einem Klick freigegeben.
-- Die Bestzeit wird im Browser per `localStorage` gespeichert.
+1. Repository öffnen
+2. Alle alten Dateien löschen
+3. Den Inhalt dieses Ordners hochladen
+4. In **Settings > Pages** einstellen:
+   - Source: **Deploy from a branch**
+   - Branch: **main**
+   - Folder: **/(root)**
+5. Speichern und die Seite mit **Strg+F5** neu laden
+
+## Struktur
+
+- `index.html`
+- `styles.css`
+- `js/app-v9.js`
+- `assets/images/*.svg`
+
+## Spielablauf
+
+- Start klicken
+- Intro in Sprechblasen lesen
+- Tiere nacheinander anklicken
+- je Thema 3 Fragen beantworten
+- nach allen Stationen Jörg anklicken
+- Bosskampf mit 5 Fragen bestehen
