@@ -337,10 +337,27 @@
     nextPage();
   }
 
+  function shuffledQuestion(question) {
+    const entries = question.options.map(function (option, idx) {
+      return { text: option, originalIndex: idx };
+    });
+    for (let i = entries.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = entries[i];
+      entries[i] = entries[j];
+      entries[j] = tmp;
+    }
+    return {
+      q: question.q,
+      options: entries.map(function (entry) { return entry.text; }),
+      correct: entries.findIndex(function (entry) { return entry.originalIndex === question.correct; })
+    };
+  }
+
   function showQuiz(questionSet, onComplete) {
     let questionIndex = 0;
     function renderQuestion() {
-      const question = questionSet[questionIndex];
+      const question = shuffledQuestion(questionSet[questionIndex]);
       openBubble({ speaker: 'Quiz', title: question.q, body: 'Wähle genau eine Antwort aus und bestätige sie.', actions: [] });
       el.bubbleChoices.classList.remove('hidden');
       const name = 'question_' + questionIndex;
@@ -543,7 +560,7 @@
     el.cutsceneScreen.classList.add('hidden');
     closeBubble();
     el.worldSign.textContent = 'Datenschutzpfad';
-    el.hint.textContent = 'Sprich nacheinander mit den Tieren.';
+    el.hint.textContent = 'Sprich mit den Tieren und sammle alle Themen ein.';
     el.stations.forEach(function (button) { button.classList.remove('completed'); });
     updateHud();
   }
@@ -565,7 +582,7 @@
       updateHud();
       startTimer();
       playCutscene('intro', introPages, function () {
-        el.hint.textContent = 'Sprich die Tiere in beliebiger Reihenfolge an und sammle alle Themen ein.';
+        el.hint.textContent = 'Sprich mit den Tieren in beliebiger Reihenfolge und sammle alle Themen ein.';
       });
     });
 
