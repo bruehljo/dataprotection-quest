@@ -1,1 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><ellipse cx="58" cy="66" rx="34" ry="24" fill="#6faa42"/><ellipse cx="58" cy="66" rx="24" ry="17" fill="#a9d56f"/><circle cx="91" cy="63" r="10" fill="#6faa42"/><circle cx="95" cy="61" r="2.8" fill="#23395f"/><circle cx="34" cy="84" r="7" fill="#6faa42"/><circle cx="47" cy="87" r="7" fill="#6faa42"/><circle cx="68" cy="87" r="7" fill="#6faa42"/><circle cx="80" cy="84" r="7" fill="#6faa42"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140">
+  <ellipse cx="70" cy="124" rx="38" ry="9" fill="rgba(35,57,95,0.14)"/>
+  <g stroke="#23395f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="66" cy="80" rx="40" ry="27" fill="#6faa42"/>
+    <path d="M44 80c8-12 18-18 30-18 11 0 22 6 30 18-8 8-18 12-30 12-12 0-22-4-30-12z" fill="#aedb74"/>
+    <circle cx="108" cy="78" r="12" fill="#6faa42"/>
+    <circle cx="112" cy="76" r="3.5" fill="#23395f"/>
+    <path d="M106 84c4 2 7 2 10 0" fill="none"/>
+    <circle cx="43" cy="101" r="8" fill="#6faa42"/>
+    <circle cx="60" cy="106" r="8" fill="#6faa42"/>
+    <circle cx="82" cy="106" r="8" fill="#6faa42"/>
+    <circle cx="97" cy="101" r="8" fill="#6faa42"/>
+    <path d="M26 80 14 74l2 12" fill="#6faa42"/>
+  </g>
+</svg>
