@@ -1,9 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 180">
-  <rect x="16" y="12" width="108" height="152" rx="10" fill="#fff8e7" stroke="#223f73" stroke-width="5"/>
-  <rect x="34" y="36" width="72" height="10" rx="4" fill="#8fb6e8"/>
-  <rect x="30" y="62" width="80" height="8" rx="4" fill="#d4c38d"/>
-  <rect x="30" y="82" width="80" height="8" rx="4" fill="#d4c38d"/>
-  <rect x="30" y="102" width="80" height="8" rx="4" fill="#d4c38d"/>
-  <circle cx="97" cy="137" r="17" fill="#d34b55" opacity=".9"/>
-  <path d="M88 137l7 7 13-16" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+<rect x="18" y="12" width="84" height="128" rx="8" fill="#fffaf0" stroke="#223f73" stroke-width="4"/>
+<path d="M84 12v28h18" fill="#e8eef8" stroke="#223f73" stroke-width="4"/>
+<path d="M34 56h48M34 74h52M34 92h42M34 110h50" stroke="#223f73" stroke-width="4" stroke-linecap="round"/>
+<circle cx="40" cy="28" r="8" fill="#d96553"/>
+<path d="M34 138l6 10 8-12 10 9 8-11 10 8 8-10" fill="none" stroke="#c79e2c" stroke-width="4" stroke-linecap="round"/>
 </svg>

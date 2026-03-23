@@ -16,12 +16,12 @@ const appState = {
 
 const stations = [
   {
-    id: 'rights', x: 7, y: 68,
+    id: 'rights', x: 8, y: 56,
     name: 'Eule Erika', topic: 'Grundrechte', animal: 'owl',
     lesson: [
       {speaker:'Eule Erika', title:'Datenschutz ist ein Grundrecht', lines:[
         'Datenschutz ist nicht einfach ein nettes Extra. Er schützt Menschen davor, dass ihre Persönlichkeit durch einen unsicheren oder unbegrenzten Umgang mit Daten beeinträchtigt wird.',
-        'Die Folien zeigen: Die DSGVO fiel nicht vom Himmel. Schon Art. 8 EMRK, Art. 7 und 8 der Grundrechtecharta und in Österreich auch § 1 DSG schützen Privatleben und personenbezogene Daten.'
+        'Die DSGVO fiel nicht vom Himmel. Schon Menschenrechte und Grundrechte schützen Privatleben und personenbezogene Daten.'
       ]},
       {speaker:'Eule Erika', title:'Informationelle Selbstbestimmung', lines:[
         'Der Kern ist das Recht auf informationelle Selbstbestimmung: Du sollst in allen Lebensbereichen mitentscheiden können, wer was über dich weiß und wofür diese Daten genutzt werden.',
@@ -39,13 +39,13 @@ const stations = [
       {context:'Eine Kollegin fragt, warum die DSGVO so ausführlich Rechte und Pflichten regelt.',
        question:'Welche Idee steht hinter dem Recht auf informationelle Selbstbestimmung?',
        options:['Menschen sollen selbst entscheiden können, wer welche Informationen über sie verwenden darf.','Unternehmen sollen Daten frei austauschen können, solange es praktisch ist.','Behörden sollen jede Datenverarbeitung vorher genehmigen müssen.'], correct:0},
-      {context:'Du fasst die Folien für neue Mitarbeitende zusammen.',
+      {context:'Du fasst die Schulung für neue Mitarbeitende zusammen.',
        question:'Welche Aussage ist richtig?',
        options:['Die DSGVO entstand ohne Vorläufer und ohne Grundrechtsbezug.','Datenschutz ist nur eine freiwillige Empfehlung.','Der Schutz personenbezogener Daten ist als Grundrecht verankert und wird von unabhängigen Stellen überwacht.'], correct:2}
     ]
   },
   {
-    id: 'data', x: 21, y: 76,
+    id: 'data', x: 23, y: 72,
     name: 'Schildkröte Theo', topic: 'Personenbezogene Daten', animal: 'turtle',
     lesson: [
       {speaker:'Theo', title:'Was sind personenbezogene Daten?', lines:[
@@ -74,7 +74,7 @@ const stations = [
     ]
   },
   {
-    id: 'roles', x: 36, y: 66,
+    id: 'roles', x: 38, y: 42,
     name: 'Hund Hugo', topic: 'Rollenbilder', animal: 'dog',
     lesson: [
       {speaker:'Hugo', title:'Wer ist wofür verantwortlich?', lines:[
@@ -103,11 +103,11 @@ const stations = [
     ]
   },
   {
-    id: 'legal', x: 48, y: 78,
+    id: 'legal', x: 50, y: 61,
     name: 'Fuchs Frieda', topic: 'Rechtsgrundlagen', animal: 'fox',
     lesson: [
       {speaker:'Frieda', title:'Verbot mit Erlaubnisvorbehalt', lines:[
-        'Die Folien bringen es auf den Punkt: Die Verarbeitung personenbezogener Daten ist verboten - außer man kann sich auf eine passende Rechtsgrundlage stützen.',
+        'Personenbezogene Daten dürfen nur verarbeitet werden, wenn es dafür eine passende Rechtsgrundlage gibt.',
         'Ohne Rechtsgrundlage darf man Daten also nicht einfach kopieren, verschicken, ändern oder auf sonstige Weise verarbeiten.'
       ]},
       {speaker:'Frieda', title:'Die wichtigsten Grundlagen', lines:[
@@ -132,7 +132,7 @@ const stations = [
     ]
   },
   {
-    id: 'rights2', x: 62, y: 68,
+    id: 'rights2', x: 66, y: 47,
     name: 'Bär Bruno', topic: 'Betroffenenrechte', animal: 'bear',
     lesson: [
       {speaker:'Bruno', title:'Rechte der betroffenen Personen', lines:[
@@ -161,7 +161,7 @@ const stations = [
     ]
   },
   {
-    id: 'company', x: 74, y: 78,
+    id: 'company', x: 76, y: 70,
     name: 'Hase Hanna', topic: 'Unternehmen & Prozesse', animal: 'rabbit',
     lesson: [
       {speaker:'Hanna', title:'Datenschutz im Unternehmen', lines:[
@@ -190,11 +190,11 @@ const stations = [
     ]
   },
   {
-    id: 'tkg', x: 86, y: 64,
+    id: 'tkg', x: 88, y: 34,
     name: 'Adler Amir', topic: 'TKG & Direktwerbung', animal: 'eagle',
     lesson: [
       {speaker:'Amir', title:'Direktwerbung ist nicht frei', lines:[
-        'Das Telekommunikationsgesetz ist bei Direktwerbung wichtig. Die Folien sagen ausdrücklich: Unerbetene Anrufe oder E-Mails zu Werbezwecken sind grundsätzlich unzulässig - sowohl im B2C- als auch nach ständiger Rechtsprechung im B2B-Bereich.',
+        'Das Telekommunikationsgesetz ist bei Direktwerbung wichtig. Unerbetene Anrufe oder E-Mails zu Werbezwecken sind grundsätzlich unzulässig - sowohl im B2C- als auch nach ständiger Rechtsprechung im B2B-Bereich.',
         'Wer werblich kommunizieren will, muss die Regeln sehr genau prüfen.'
       ]},
       {speaker:'Amir', title:'Einwilligung und Ausnahmefälle', lines:[
@@ -208,18 +208,18 @@ const stations = [
     ],
     questions: [
       {context:'Ein Team möchte spontan eine gekaufte Adressliste für Werbe-E-Mails nutzen.',
-       question:'Welche Aussage passt zu den Folien?',
+       question:'Welche Aussage stimmt?',
        options:['Werbe-E-Mails ohne vorherige Einwilligung sind grundsätzlich unzulässig.','Werbung per E-Mail ist immer erlaubt, wenn sie höflich formuliert ist.','Im B2B-Bereich gelten nie Regeln zur Direktwerbung.'], correct:0},
       {context:'Auf einer Plattform trägt jemand eine E-Mail-Adresse ein. Das Unternehmen möchte sicherstellen, dass die Adresse wirklich zu dieser Person gehört.',
        question:'Welche Maßnahme ist dafür typisch?',
        options:['Double-Opt-in','Automatisches Verschicken beliebiger Werbung','Ein öffentlicher Aushang der Adresse'], correct:0},
       {context:'Eine Kollegin meint: „Wenn wir B2B werben, gilt das Telekommunikationsgesetz nicht.“',
-       question:'Was ist nach den Folien richtig?',
+       question:'Was ist richtig?',
        options:['Das TKG ist nur für Privatkunden relevant.','Das TKG gilt auch im B2B-Kontext.','Direktwerbung ist nur im B2B ohne Einwilligung immer erlaubt.'], correct:1}
     ]
   },
   {
-    id: 'security', x: 90, y: 82,
+    id: 'security', x: 90, y: 58,
     name: 'Dachs Daria', topic: 'Datensicherheit', animal: 'badger',
     lesson: [
       {speaker:'Daria', title:'Datengeheimnis und Alltag', lines:[
@@ -260,7 +260,7 @@ const bossQuestions = [
    question:'Was trifft zu?',
    options:['Es liegt keine Datenschutzverletzung vor, solange nur E-Mail-Adressen betroffen sind.','Die offene cc-Liste kann eine meldepflichtige Datenschutzverletzung sein; die Betroffenenrechte müssen trotzdem bearbeitet werden.','Betroffenenrechte ruhen automatisch, solange ein Vorfall untersucht wird.'], correct:1},
   {context:'Auf einer Messe wird auf einem Notebook ohne Sichtschutzfolie gearbeitet. Gleichzeitig notiert jemand Passwörter auf einem Zettel neben dem Gerät.',
-   question:'Welches Risiko beschreiben die Folien hier besonders?',
+   question:'Welches Risiko liegt hier besonders nahe?',
    options:['Nur das Risiko eines Stromausfalls.','Shoulder Surfing und unbefugter Zugriff auf Informationen.','Ausschließlich das Risiko eines Vertragsfehlers.'], correct:1},
   {context:'Ein Unternehmen möchte Werbe-E-Mails versenden, nachdem Personen ihre E-Mail-Adresse in ein Formular eingetragen haben. Es wurde aber nicht geprüft, ob die Adresse wirklich ihnen gehört.',
    question:'Warum ist das problematisch?',
@@ -269,16 +269,16 @@ const bossQuestions = [
 
 const introStory = [
   {side:'left-top', speaker:'Maus', title:'Ein Stück Käse...', text:'"Oh, ein Stück Käse wäre jetzt perfekt."'},
-  {side:'right-bottom', speaker:'Katze', title:'Ein verlockendes Angebot', text:'"Ich hätte Käse. Ich brauche dafür nur ein paar Infos: Vor- und Nachname, Anschrift, Hobbys und deine E-Mail-Adresse."'},
+  {side:'left-top', speaker:'Katze', title:'Ein verlockendes Angebot', text:'"Ich hätte Käse. Ich brauche dafür nur ein paar Infos: Vor- und Nachname, Anschrift, Hobbys und deine E-Mail-Adresse."'},
   {side:'left-top', speaker:'Maus', title:'Sie willigt ein', text:'"Das klingt harmlos. Gut, ich sage es dir."'},
-  {side:'right-bottom', speaker:'Erzählstimme', title:'Mehr als genug', text:'Für ein Stück Käse hat die Maus genug preisgegeben, um identifiziert, kontaktiert und mit glaubwürdigen Nachrichten getäuscht zu werden. Hilf ihr jetzt, Risiken zu erkennen und künftig bewusster zu entscheiden.'}
+  {side:'left-top', speaker:'Erzählstimme', title:'Mehr als genug', text:'Für ein Stück Käse hat die Maus genug preisgegeben, um identifiziert, kontaktiert und mit glaubwürdigen Nachrichten getäuscht zu werden. Hilf ihr jetzt, Risiken zu erkennen und künftig bewusster zu entscheiden.'}
 ];
 
 const outroStory = [
   {side:'left-top', speaker:'Katze', title:'Noch einmal versuchen?', text:'"Ich hätte wieder ein Stück Käse. Nur ein paar Infos. Nichts Wichtiges."'},
-  {side:'right-bottom', speaker:'Maus', title:'Diesmal anders', text:'"Ich weiß jetzt, was mit meinen Daten passieren kann."'},
+  {side:'left-top', speaker:'Maus', title:'Diesmal anders', text:'"Ich weiß jetzt, was mit meinen Daten passieren kann."'},
   {side:'left-top', speaker:'Maus', title:'Eigene Entscheidung', text:'"Und ich entscheide selbst, wem ich sie gebe. Nein. Diesmal nicht."'},
-  {side:'right-bottom', speaker:'Erzählstimme', title:'Das ist die Botschaft', text:'Datenschutz bedeutet: Du triffst informierte Entscheidungen über deine Daten - nicht aus Angst, sondern aus Verständnis.'}
+  {side:'left-top', speaker:'Erzählstimme', title:'Das ist die Botschaft', text:'Datenschutz bedeutet: Du triffst informierte Entscheidungen über deine Daten - nicht aus Angst, sondern aus Verständnis.'}
 ];
 
 function $(id){ return document.getElementById(id); }
@@ -342,7 +342,7 @@ function renderMenu(){
           <div class="stack">
             <button class="cta" onclick="beginStory()">Spiel starten</button>
             <button class="cta secondary" onclick="skipToWorld()">Direkt zur Schulung</button>
-            <p class="side-note">Die Inhalte basieren auf den Themenblöcken deiner Folien: Grundrechte und informationelle Selbstbestimmung, personenbezogene Daten, Rollenbilder, Rechtsgrundlagen, Betroffenenrechte, Unternehmenspflichten, TKG/Double-Opt-in und Datensicherheit.</p>
+            <p class="side-note">Acht Themenstationen erklären Datenschutz und Datensicherheit verständlich, alltagsnah und Schritt für Schritt.</p>
             <p class="side-note">Bestzeit: <strong>${appState.bestTime ? formatTime(appState.bestTime) : 'noch keine'}</strong></p>
           </div>
         </div>
@@ -381,7 +381,7 @@ function renderIntroScene(){
 
 function renderWorld(){
   appState.currentScreen = 'world';
-  setHint(appState.completed.size === stations.length ? 'Alle Tiere sind fertig. Öffne die Bossprüfung.' : 'Sprich nacheinander mit den Tieren.');
+  setHint(appState.completed.size === stations.length ? 'Alle Tiere sind fertig. Öffne die Bossprüfung.' : 'Erkunde die Fläche und sprich mit den Tieren.');
   updateHud();
   const avatar = `<div class="avatar" id="avatar" style="left:${appState.avatarPos.left}%; top:${appState.avatarPos.top}%;"></div>`;
   const stationHtml = stations.map(s => `
@@ -394,7 +394,7 @@ function renderWorld(){
     </div>`).join('');
   const bossReady = appState.completed.size === stations.length;
   const bossHtml = bossReady ? `
-    <div class="station" style="left:46%; top:32%;" onclick="openBoss()">
+    <div class="station" style="left:46%; top:22%;" onclick="openBoss()">
       <div class="animal" style="width:140px;height:170px;background-image:url('assets/images/jorg.svg')"></div>
       <div class="label-card"><div class="name">Jörg</div><div class="topic">Abschlussprüfung</div></div>
     </div>` : '';
@@ -414,7 +414,7 @@ function renderWorld(){
 
 function showStoryBubble(story, onNext){
   $('modal-root').innerHTML = `
-    <div class="modal-backdrop">
+    <div class="modal-backdrop ${appState.currentScreen === 'intro' ? 'story-intro' : (appState.currentScreen === 'outro' ? 'story-outro' : '')}">
       <div class="bubble-shell">
         <div class="speech ${story.side}">
           <div class="kicker">${story.speaker}</div>
@@ -440,7 +440,7 @@ function showLessonPage(index){
   const station = stations.find(s => s.id === appState.currentStationId);
   const page = station.lesson[index];
   $('modal-root').innerHTML = `
-    <div class="modal-backdrop">
+    <div class="modal-backdrop ${appState.currentScreen === 'intro' ? 'story-intro' : (appState.currentScreen === 'outro' ? 'story-outro' : '')}">
       <div class="bubble-shell">
         <div class="speech center">
           <div class="kicker">${page.speaker}</div>
@@ -462,7 +462,7 @@ function showQuiz(index, isBoss){
   const q = pool[index];
   const title = isBoss ? `Prüfungsfrage ${index+1} von ${pool.length}` : `Kontrollfrage ${index+1} von ${pool.length}`;
   $('modal-root').innerHTML = `
-    <div class="modal-backdrop">
+    <div class="modal-backdrop ${appState.currentScreen === 'intro' ? 'story-intro' : (appState.currentScreen === 'outro' ? 'story-outro' : '')}">
       <div class="quiz-card">
         <div class="quiz-kicker"><span>${isBoss ? 'Jörg - Abschlussprüfung' : 'Quiz'}</span><span>${title}</span></div>
         <h3>${q.question}</h3>

@@ -83,8 +83,8 @@ button, input { font: inherit; }
 .modal-backdrop { position: fixed; inset: 0; background: rgba(26,42,73,.34); display:grid; place-items:center; z-index: 99; padding: 24px; }
 .bubble-shell { position: relative; width:min(1080px, 92vw); min-height: 380px; }
 .speech { position:absolute; background: rgba(255,253,246,.98); border: 5px solid var(--ink-soft); border-radius: 34px; box-shadow: var(--shadow); padding: 24px 28px 92px; line-height:1.55; }
-.speech.left-top { top: 20px; left: 20px; width:min(450px, 42vw); min-height:260px; }
-.speech.right-bottom { right: 20px; bottom: 20px; width:min(560px, 48vw); min-height: 340px; }
+.speech.left-top { top: 24px; left: 24px; width:min(420px, 38vw); min-height:240px; }
+.speech.right-bottom { right: 24px; bottom: 24px; width:min(520px, 46vw); min-height: 300px; }
 .speech.center { left:50%; top:50%; transform:translate(-50%, -50%); width:min(760px, 70vw); }
 .speech::after { content:""; position:absolute; width:50px; height:50px; background: inherit; border-left:5px solid var(--ink-soft); border-bottom:5px solid var(--ink-soft); transform: rotate(-34deg); }
 .speech.left-top::after { left:68px; bottom:-20px; }
@@ -139,3 +139,5 @@ button, input { font: inherit; }
   .speech::after { display:none; }
   .exam-stage { grid-template-columns: 1fr; gap: 12px; }
 }
+
+.story-intro .speech.left-top::after, .story-outro .speech.left-top::after { left: 48px; bottom: -18px; }
