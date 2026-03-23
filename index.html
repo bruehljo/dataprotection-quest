@@ -1,24 +1,171 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data Quest - Comic Edition</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Quest – Die Maus und das Geheimnis der Daten</title>
+  <link rel="stylesheet" href="styles.css?v=15" />
 </head>
 <body>
   <div id="app">
-    <header class="hud">
-      <div class="hud-card"><span class="label">Leben</span><span id="lives"></span></div>
-      <div class="hud-card"><span class="label">Zeit</span><span id="timer">00:00</span></div>
-      <div class="hud-card"><span class="label">Fortschritt</span><span id="progress">0 / 8</span></div>
-      <div class="hud-card hint"><span class="label">Hinweis</span><span id="hint">Wähle „Spiel starten“.</span></div>
+    <header id="hud">
+      <div class="hud-pill"><span>Leben</span><strong id="lives">❤❤❤</strong></div>
+      <div class="hud-pill"><span>Zeit</span><strong id="timer">00:00</strong></div>
+      <div class="hud-pill"><span>Fortschritt</span><strong id="progress">0 / 8</strong></div>
+      <div class="hud-pill"><span>Hinweis</span><strong id="hint">Klicke in die Wiese oder direkt auf ein Tier.</strong></div>
     </header>
 
-    <main id="screen" class="screen"></main>
+    <main id="game-frame">
+      <section id="world" aria-label="Comic-Landschaft mit Datenschutzstationen">
+        <div class="scene-backdrop">
+          <div class="sky-band sky-band-a"></div>
+          <div class="sky-band sky-band-b"></div>
+          <div class="hill hill-a"></div>
+          <div class="hill hill-b"></div>
+          <div class="meadow"></div>
+          <div class="path"></div>
+          <div class="flowers flowers-a"></div>
+          <div class="flowers flowers-b"></div>
+          <div class="shrub shrub-a"></div>
+          <div class="shrub shrub-b"></div>
+          <div class="sign-hint" id="world-sign">Datenschutzpfad</div>
+        </div>
 
-    <div id="modal-root"></div>
+        <button type="button" class="station" data-id="grundrechte" style="left: 12%; top: 56%;">
+          <span class="station-base"></span>
+          <img src="assets/images/owl.svg" alt="Eule Erika" />
+          <span class="station-label">Eule Erika<small>Grundrechte</small></span>
+        </button>
+        <button type="button" class="station" data-id="daten" style="left: 28%; top: 71%;">
+          <span class="station-base"></span>
+          <img src="assets/images/turtle.svg" alt="Schildkröte Theo" />
+          <span class="station-label">Schildkröte Theo<small>Personenbezogene Daten</small></span>
+        </button>
+        <button type="button" class="station" data-id="rollen" style="left: 42%; top: 48%;">
+          <span class="station-base"></span>
+          <img src="assets/images/dog.svg" alt="Hund Hugo" />
+          <span class="station-label">Hund Hugo<small>Rollenbilder</small></span>
+        </button>
+        <button type="button" class="station" data-id="rechtsgrundlagen" style="left: 56%; top: 67%;">
+          <span class="station-base"></span>
+          <img src="assets/images/fox.svg" alt="Fuchs Frieda" />
+          <span class="station-label">Fuchs Frieda<small>Rechtsgrundlagen</small></span>
+        </button>
+        <button type="button" class="station" data-id="rechte" style="left: 72%; top: 52%;">
+          <span class="station-base"></span>
+          <img src="assets/images/bear.svg" alt="Bär Bruno" />
+          <span class="station-label">Bär Bruno<small>Betroffenenrechte</small></span>
+        </button>
+        <button type="button" class="station" data-id="unternehmen" style="left: 79%; top: 73%;">
+          <span class="station-base"></span>
+          <img src="assets/images/rabbit.svg" alt="Hase Hanna" />
+          <span class="station-label">Hase Hanna<small>Unternehmen &amp; Prozesse</small></span>
+        </button>
+        <button type="button" class="station" data-id="werbung" style="left: 86%; top: 41%;">
+          <span class="station-base"></span>
+          <img src="assets/images/eagle.svg" alt="Adler Amir" />
+          <span class="station-label">Adler Amir<small>TKG &amp; Direktwerbung</small></span>
+        </button>
+        <button type="button" class="station" data-id="sicherheit" style="left: 89%; top: 63%;">
+          <span class="station-base"></span>
+          <img src="assets/images/badger.svg" alt="Dachs Daria" />
+          <span class="station-label">Dachs Daria<small>Datensicherheit</small></span>
+        </button>
+
+        <div id="mouse" aria-label="Mausfigur">
+          <div id="mouse-shadow"></div>
+          <img src="assets/images/mouse.svg" alt="Maus" />
+        </div>
+      </section>
+
+      <section id="start-screen" class="overlay-screen">
+        <div class="comic-panel title-card">
+          <div class="ribbon">Comic Edition v15</div>
+          <div class="start-grid">
+            <div>
+              <h1>Data Quest – Die Maus und das Geheimnis der Daten</h1>
+              <p class="lead">Eine interaktive Datenschutzschulung im klassischen Comicstil. Die Maus trifft Tiere, die ihr Datenschutz und Datensicherheit ausführlich, verständlich und alltagsnah erklären.</p>
+              <ul class="feature-list">
+                <li>8 Lernstationen mit ausführlichen Erklärungen und Kontextfragen</li>
+                <li>Klick-Steuerung: Die Maus läuft sichtbar zu jedem Tier</li>
+                <li>eigener Bossbildschirm mit Jörg als Abschlussprüfung</li>
+                <li>Intro, Finale, Timer, Leben und Zertifikat</li>
+              </ul>
+              <div class="button-row left">
+                <button type="button" id="start-btn" class="primary">Spiel starten</button>
+                <button type="button" id="skip-intro-btn" class="secondary">Direkt zur Schulung</button>
+              </div>
+            </div>
+            <div class="hero-card">
+              <img src="assets/images/mouse.svg" alt="Maus" class="hero-mouse" />
+              <img src="assets/images/cat.svg" alt="Katze" class="hero-cat" />
+              <div class="hero-cheese"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="cutscene-screen" class="overlay-screen hidden">
+        <div class="cutscene-stage" id="cutscene-stage">
+          <div class="desk"></div>
+          <div class="notice-board"></div>
+          <img id="cut-mouse" src="assets/images/mouse.svg" alt="Maus" />
+          <img id="cut-cat" src="assets/images/cat.svg" alt="Katze" />
+          <div id="cut-cheese"></div>
+          <div id="cut-notice" class="official-notice hidden">Bescheid der Datenschutzbehörde</div>
+        </div>
+      </section>
+
+      <section id="bubble-layer" class="overlay-screen hidden">
+        <div id="bubble" class="comic-bubble">
+          <div class="bubble-speaker" id="bubble-speaker"></div>
+          <div class="bubble-title" id="bubble-title"></div>
+          <div class="bubble-body" id="bubble-body"></div>
+          <div class="bubble-choices hidden" id="bubble-choices"></div>
+          <div class="choice-status" id="choice-status"></div>
+          <div class="bubble-actions" id="bubble-actions"></div>
+        </div>
+      </section>
+
+      <section id="boss-screen" class="overlay-screen hidden">
+        <div class="boss-panel comic-panel">
+          <div class="ribbon">Bossarena</div>
+          <div class="boss-layout">
+            <div class="boss-copy">
+              <p class="eyebrow">ABSCHLUSSPRÜFUNG</p>
+              <h2>Jörg prüft dein Wissen</h2>
+              <p>Alle Themen sind abgeschlossen. Jetzt erscheint Jörg auf einem eigenen Bildschirm und testet, ob die Maus die Zusammenhänge wirklich verstanden hat.</p>
+              <p>Die fünf Fragen sind schwerer und verlangen Urteilsvermögen. Erst danach folgt die Schlussszene mit der Katze.</p>
+              <div class="button-row left">
+                <button type="button" id="boss-btn" class="primary">Bosskampf starten</button>
+              </div>
+            </div>
+            <div class="boss-art-wrap">
+              <div class="boss-floor"></div>
+              <img src="assets/images/joerg.svg" alt="Jörg" class="boss-art" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="result-screen" class="overlay-screen hidden">
+        <div class="result-card comic-panel">
+          <div class="ribbon">Abschluss</div>
+          <h2>Zertifikat: Datenschutz bestanden</h2>
+          <p id="result-text"></p>
+          <div class="stats-grid">
+            <div><span>Bestzeit</span><strong id="best-time">--:--</strong></div>
+            <div><span>Aktuelle Zeit</span><strong id="final-time">--:--</strong></div>
+            <div><span>Verbleibende Leben</span><strong id="final-lives">0</strong></div>
+            <div><span>Punkte</span><strong id="final-score">0</strong></div>
+          </div>
+          <div class="button-row">
+            <button type="button" id="retry-btn" class="primary">Neu starten</button>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
-  <script src="app.js"></script>
+  <script src="js/app-v15.js?v=15"></script>
 </body>
 </html>
