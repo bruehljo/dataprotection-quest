@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-  <ellipse cx="128" cy="226" rx="56" ry="14" fill="#20355a" opacity=".12"/>
-  <ellipse cx="120" cy="146" rx="70" ry="54" fill="#8cc15f" stroke="#20355a" stroke-width="6"/>
-  <path d="M71 146c0-39 26-68 57-68 32 0 58 29 58 68s-26 68-58 68c-31 0-57-29-57-68Z" fill="#72aa46" stroke="#20355a" stroke-width="6"/>
-  <path d="M98 113c8-8 18-12 30-12s22 4 30 12M86 145h84M98 178c9 7 19 10 30 10 12 0 22-3 31-10" fill="none" stroke="#5c8d3b" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="193" cy="141" r="26" fill="#8fc56a" stroke="#20355a" stroke-width="6"/>
-  <circle cx="202" cy="137" r="8" fill="#20355a"/>
-  <circle cx="76" cy="193" r="13" fill="#8fc56a" stroke="#20355a" stroke-width="6"/>
-  <circle cx="110" cy="205" r="13" fill="#8fc56a" stroke="#20355a" stroke-width="6"/>
-  <circle cx="144" cy="205" r="13" fill="#8fc56a" stroke="#20355a" stroke-width="6"/>
-  <circle cx="177" cy="193" r="13" fill="#8fc56a" stroke="#20355a" stroke-width="6"/>
-  <path d="M205 151c14 6 22 14 25 25" fill="none" stroke="#5c8d3b" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="189" cy="152" r="7" fill="#f6b8c4" opacity=".7"/>
+  <ellipse cx="128" cy="222" rx="50" ry="12" fill="#2a3f67" opacity=".10"/>
+  <ellipse cx="126" cy="146" rx="58" ry="48" fill="#9ace69"/>
+  <ellipse cx="124" cy="148" rx="46" ry="38" fill="#7fb24d"/>
+  <path d="M124 114c14 0 26 4 35 11M92 148h66M105 176c7 5 13 7 19 7 8 0 14-2 20-7" fill="none" stroke="#6a9741" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="190" cy="140" r="23" fill="#a6d976"/>
+  <circle cx="197" cy="138" r="6" fill="#223864"/>
+  <circle cx="88" cy="190" r="12" fill="#a6d976"/>
+  <circle cx="114" cy="202" r="12" fill="#a6d976"/>
+  <circle cx="143" cy="202" r="12" fill="#a6d976"/>
+  <circle cx="169" cy="190" r="12" fill="#a6d976"/>
+  <path d="M202 154c9 4 16 10 20 17" fill="none" stroke="#7fb24d" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="184" cy="152" r="5" fill="#f7c5d2"/>
 </svg>
