@@ -1,13 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
-  <ellipse cx="80" cy="144" rx="31" ry="10" fill="#314565" opacity=".16"/>
-  <ellipse cx="66" cy="44" rx="12" ry="28" fill="#fff" stroke="#20355a" stroke-width="4"/>
-  <ellipse cx="96" cy="44" rx="12" ry="28" fill="#fff" stroke="#20355a" stroke-width="4"/>
-  <ellipse cx="66" cy="44" rx="5" ry="18" fill="#f6b8c4"/>
-  <ellipse cx="96" cy="44" rx="5" ry="18" fill="#f6b8c4"/>
-  <ellipse cx="80" cy="92" rx="31" ry="39" fill="#f7f8ff" stroke="#20355a" stroke-width="4"/>
-  <ellipse cx="80" cy="82" rx="24" ry="23" fill="#fff" stroke="#20355a" stroke-width="4"/>
-  <circle cx="70" cy="78" r="4.6" fill="#20355a"/>
-  <circle cx="92" cy="78" r="4.6" fill="#20355a"/>
-  <circle cx="81" cy="87" r="7.5" fill="#f6b8c4"/>
-  <path d="M74 96c2 3 5 4 8 4 4 0 7-1 10-4" fill="none" stroke="#20355a" stroke-width="3" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <ellipse cx="128" cy="228" rx="50" ry="14" fill="#20355a" opacity=".12"/>
+  <ellipse cx="104" cy="66" rx="18" ry="46" fill="#fff" stroke="#20355a" stroke-width="6"/>
+  <ellipse cx="152" cy="66" rx="18" ry="46" fill="#fff" stroke="#20355a" stroke-width="6"/>
+  <ellipse cx="104" cy="66" rx="8" ry="30" fill="#f8c0cc"/>
+  <ellipse cx="152" cy="66" rx="8" ry="30" fill="#f8c0cc"/>
+  <ellipse cx="128" cy="156" rx="58" ry="66" fill="#f8f9ff" stroke="#20355a" stroke-width="6"/>
+  <circle cx="128" cy="116" r="48" fill="#ffffff" stroke="#20355a" stroke-width="6"/>
+  <ellipse cx="128" cy="128" rx="34" ry="28" fill="#ffffff" stroke="#20355a" stroke-width="6"/>
+  <circle cx="108" cy="114" r="8" fill="#20355a"/>
+  <circle cx="148" cy="114" r="8" fill="#20355a"/>
+  <circle cx="93" cy="138" r="7" fill="#f6b8c4" opacity=".75"/>
+  <circle cx="163" cy="138" r="7" fill="#f6b8c4" opacity=".75"/>
+  <ellipse cx="128" cy="127" rx="10" ry="8" fill="#f6b8c4"/>
+  <path d="M117 141c3 6 7 8 11 8 5 0 9-2 12-8" fill="none" stroke="#20355a" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="94" cy="177" r="10" fill="#fff" stroke="#20355a" stroke-width="5"/>
 </svg>

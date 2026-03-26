@@ -177,8 +177,8 @@ img { display: block; }
 
 .station {
   position: absolute;
-  width: 172px;
-  height: 200px;
+  width: 174px;
+  height: 208px;
   transform: translate(-50%, -50%);
   background: transparent;
   border: 0;
@@ -187,18 +187,18 @@ img { display: block; }
   z-index: 20;
 }
 .station img {
-  width: 114px;
-  height: 114px;
+  width: 122px;
+  height: 122px;
   position: absolute;
   left: 50%;
   top: 0;
   transform: translateX(-50%);
-  filter: drop-shadow(0 14px 10px rgba(35,55,86,0.16));
+  filter: none;
 }
 .station-base {
   position: absolute;
   left: 50%;
-  top: 92px;
+  top: 98px;
   transform: translateX(-50%);
   width: 88px;
   height: 26px;
@@ -208,7 +208,7 @@ img { display: block; }
 .station-label {
   position: absolute;
   left: 50%;
-  top: 106px;
+  top: 114px;
   transform: translateX(-50%);
   min-width: 168px;
   max-width: 168px;
@@ -230,7 +230,7 @@ img { display: block; }
   font-weight: 700;
   color: var(--ink-soft);
 }
-.station:hover img { transform: translateX(-50%) translateY(-4px); }
+.station:hover img { transform: translateX(-50%) translateY(-2px); }
 .station:hover .station-label { transform: translateX(-50%) translateY(-2px); }
 .station.completed .station-label {
   border-color: #58a16d;
@@ -688,7 +688,7 @@ img { display: block; }
   min-height: 390px;
   border: 4px solid var(--line);
   border-radius: 30px;
-  background: linear-gradient(180deg, #e7eef7 0%, #d7e3f1 56%, #d9bc8b 56%, #c59e67 100%);
+  background: linear-gradient(180deg, #edf3fb 0%, #dfe9f6 54%, #dec79e 54%, #c7a36e 100%);
   position: relative;
   overflow: hidden;
 }
@@ -712,10 +712,10 @@ img { display: block; }
   bottom: 11%;
   left: 50%;
   transform: translateX(-50%);
-  width: 270px;
-  height: 320px;
-  filter: drop-shadow(0 10px 10px rgba(35,55,86,0.14));
-  animation: bossBob 2.8s ease-in-out infinite;
+  width: 262px;
+  height: 324px;
+  filter: none;
+  animation: none;
 }
 
 .result-card h2 {
