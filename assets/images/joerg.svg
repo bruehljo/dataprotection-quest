@@ -1,17 +1,64 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 360">
-
-<ellipse cx="140" cy="334" rx="74" ry="16" fill="#000" opacity=".08"/>
-<rect x="68" y="176" width="144" height="120" rx="30" fill="#6d8fbe"/>
-<rect x="112" y="176" width="56" height="122" rx="18" fill="#f7f8fb"/>
-<polygon points="140,184 154,206 126,206" fill="#3f628b"/>
-<rect x="94" y="222" width="16" height="56" rx="8" fill="#f0c39b"/><rect x="170" y="222" width="16" height="56" rx="8" fill="#f0c39b"/>
-<circle cx="140" cy="118" r="48" fill="#f0c39b"/>
-<path d="M93 114 q10 -42 48 -46 q40 2 52 34 q4 10 0 24 q-24 -8 -45 -8 q-32 0 -55 10z" fill="#6b4b32"/>
-<path d="M102 91 q16 -26 44 -26" fill="none" stroke="#7c5940" stroke-width="10" stroke-linecap="round"/>
-<circle cx="124" cy="124" r="5" fill="#2f2a2a"/><circle cx="156" cy="124" r="5" fill="#2f2a2a"/>
-<path d="M129 146 q11 10 22 0" fill="none" stroke="#8f5d49" stroke-width="4" stroke-linecap="round"/>
-<rect x="186" y="202" width="40" height="74" rx="8" fill="#f4d061"/><rect x="192" y="208" width="28" height="62" rx="4" fill="#ffe38c"/>
-<rect x="84" y="282" width="24" height="46" rx="10" fill="#3f628b"/><rect x="172" y="282" width="24" height="46" rx="10" fill="#3f628b"/>
-<rect x="80" y="320" width="32" height="10" rx="5" fill="#4b3b31"/><rect x="168" y="320" width="32" height="10" rx="5" fill="#4b3b31"/>
-
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="360" viewBox="0 0 280 360">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="3" flood-color="#5c4b3c" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="280" height="360" fill="none"/>
+  <!-- ground shadow -->
+  <ellipse cx="140" cy="319" rx="62" ry="16" fill="#7c6246" opacity="0.22"/>
+  <!-- legs -->
+  <rect x="108" y="245" width="24" height="64" rx="10" fill="#2d425e"/>
+  <rect x="148" y="245" width="24" height="64" rx="10" fill="#2d425e"/>
+  <ellipse cx="120" cy="320" rx="22" ry="10" fill="#16191f"/>
+  <ellipse cx="160" cy="320" rx="22" ry="10" fill="#16191f"/>
+  <!-- body -->
+  <g filter="url(#shadow)">
+    <path d="M68 160 Q140 130 212 160 L202 252 Q140 270 78 252 Z" fill="#4d7cab" stroke="#233c64" stroke-width="5"/>
+    <path d="M104 158 Q140 145 176 158 L170 258 Q140 266 110 258 Z" fill="#f8f7f2" stroke="#233c64" stroke-width="5"/>
+  </g>
+  <!-- sleeves / arms -->
+  <g filter="url(#shadow)">
+    <rect x="50" y="183" width="30" height="86" rx="15" fill="#4d7cab" stroke="#233c64" stroke-width="5"/>
+    <rect x="200" y="183" width="30" height="86" rx="15" fill="#4d7cab" stroke="#233c64" stroke-width="5"/>
+    <ellipse cx="58" cy="247" rx="17" ry="14" fill="#f2d0aa" stroke="#233c64" stroke-width="4"/>
+    <ellipse cx="222" cy="247" rx="17" ry="14" fill="#f2d0aa" stroke="#233c64" stroke-width="4"/>
+  </g>
+  <!-- clipboard -->
+  <g transform="translate(210,200) rotate(-2)">
+    <rect x="0" y="0" width="48" height="74" rx="7" fill="#ffe07a" stroke="#8d6a22" stroke-width="5"/>
+    <rect x="14" y="-8" width="20" height="12" rx="4" fill="#b9964e" stroke="#8d6a22" stroke-width="3"/>
+    <line x1="12" y1="22" x2="36" y2="22" stroke="#8d6a22" stroke-width="4"/>
+    <line x1="12" y1="36" x2="36" y2="36" stroke="#8d6a22" stroke-width="4"/>
+    <line x1="12" y1="50" x2="30" y2="50" stroke="#8d6a22" stroke-width="4"/>
+  </g>
+  <!-- head -->
+  <g filter="url(#shadow)">
+    <circle cx="140" cy="106" r="56" fill="#f2d0aa" stroke="#233c64" stroke-width="5"/>
+    <!-- hair -->
+    <path d="M85 104 C90 54, 139 36, 193 62 C202 82, 199 103, 193 115 C181 103, 167 96, 143 96 C124 96, 103 99, 85 104 Z" fill="#7c5230" stroke="#233c64" stroke-width="5" stroke-linejoin="round"/>
+    <!-- ears -->
+    <circle cx="90" cy="118" r="10" fill="#f2d0aa" stroke="#233c64" stroke-width="4"/>
+    <circle cx="190" cy="118" r="10" fill="#f2d0aa" stroke="#233c64" stroke-width="4"/>
+  </g>
+  <!-- glasses -->
+  <g stroke="#233c64" stroke-width="4" fill="none">
+    <circle cx="122" cy="116" r="12" fill="#ffffff"/>
+    <circle cx="158" cy="116" r="12" fill="#ffffff"/>
+    <line x1="134" y1="116" x2="146" y2="116"/>
+    <line x1="110" y1="112" x2="100" y2="108"/>
+    <line x1="170" y1="112" x2="180" y2="108"/>
+  </g>
+  <!-- face -->
+  <circle cx="122" cy="116" r="4.5" fill="#233c64"/>
+  <circle cx="158" cy="116" r="4.5" fill="#233c64"/>
+  <path d="M129 136 Q140 145 151 136" fill="none" stroke="#233c64" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M118 128 Q122 131 126 128" fill="none" stroke="#b96572" stroke-width="3" stroke-linecap="round"/>
+  <path d="M154 128 Q158 131 162 128" fill="none" stroke="#b96572" stroke-width="3" stroke-linecap="round"/>
+  <!-- eyebrows -->
+  <path d="M112 99 L128 97" stroke="#233c64" stroke-width="4" stroke-linecap="round"/>
+  <path d="M152 97 L168 99" stroke="#233c64" stroke-width="4" stroke-linecap="round"/>
+  <!-- collar -->
+  <path d="M126 159 L140 177 L154 159" fill="#d7e5f6" stroke="#233c64" stroke-width="4"/>
+  <path d="M140 177 L148 258 L132 258 Z" fill="#7b2f2b" stroke="#233c64" stroke-width="4"/>
 </svg>
