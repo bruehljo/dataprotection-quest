@@ -1,12 +1,10 @@
-# Data Quest v15
+# Data Quest v16
 
-Statische Browser-Version der Datenschutzschulung als Comic-Spiel.
+Diese Version trennt Inhalte und Logik:
 
-## Start
-Einfach `index.html` im Browser öffnen oder den Ordner auf GitHub Pages veröffentlichen.
+- `js/content-v16.js` enthält alle Texte, Fragen und Antworten.
+- `js/app-v16.js` enthält die Spiellogik.
+- `styles.css` enthält Layout und Comic-Optik.
+- `assets/images/` enthält die SVG-Grafiken.
 
-## Inhalte
-- 8 ausführliche Tier-Stationen
-- Bossprüfung mit Jörg auf eigenem Bildschirm
-- Intro- und Schlussszene mit Sprechblasen
-- Klick-Steuerung: Die Maus läuft sichtbar durch die Szene
+Damit lassen sich Textanpassungen künftig leichter einpflegen, ohne Layout und Logik neu zu bauen.

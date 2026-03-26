@@ -1,15 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-  <ellipse cx="60" cy="102" rx="24" ry="8" fill="#6c8d4a" opacity=".32"/>
-  <path d="M15 62c10-11 20-17 31-20-1 7-2 12-2 18-10 2-18 3-29 2Z" fill="#2c4974"/>
-  <path d="M105 62c-10-11-20-17-31-20 1 7 2 12 2 18 10 2 18 3 29 2Z" fill="#2c4974"/>
-  <path d="M60 24c18 0 34 15 34 34 0 16-10 31-34 31S26 74 26 58c0-19 16-34 34-34Z" fill="#634b37"/>
-  <path d="M36 55c0-14 10-25 24-25s24 11 24 25c0 13-9 24-24 24s-24-11-24-24Z" fill="#fff6e8"/>
-  <path d="M47 37c4-4 8-6 13-6s9 2 13 6c-4-1-9-2-13-2s-9 1-13 2Z" fill="#29456e"/>
-  <path d="M48 46l12-10 12 10-6 4H54z" fill="#efc048"/>
-  <path d="M54 57h12l-6 9z" fill="#dc9f18"/>
-  <circle cx="51" cy="56" r="3.8" fill="#20355a"/>
-  <circle cx="69" cy="56" r="3.8" fill="#20355a"/>
-  <path d="M46 69c4 4 9 6 14 6s10-2 14-6" fill="none" stroke="#c78731" stroke-width="3" stroke-linecap="round"/>
-  <path d="M31 68c-6 2-10 7-13 13 8-2 15-5 19-9Z" fill="#29456e"/>
-  <path d="M89 68c6 2 10 7 13 13-8-2-15-5-19-9Z" fill="#29456e"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <ellipse cx="80" cy="144" rx="32" ry="10" fill="#314565" opacity=".18"/>
+  <path d="M46 82c9-16 20-27 34-33-4 12-4 20-2 31-11 2-20 3-32 2Z" fill="#2b4874" stroke="#20355a" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M114 82c-9-16-20-27-34-33 4 12 4 20 2 31 11 2 20 3 32 2Z" fill="#2b4874" stroke="#20355a" stroke-width="4" stroke-linejoin="round"/>
+  <ellipse cx="80" cy="86" rx="30" ry="40" fill="#7b5a3b" stroke="#20355a" stroke-width="4"/>
+  <path d="M57 80c0-16 10-28 23-28s23 12 23 28-10 26-23 26S57 96 57 80Z" fill="#fff8ec" stroke="#20355a" stroke-width="4"/>
+  <path d="M61 57c5-4 12-7 19-7 8 0 15 3 20 7-7 0-13 2-20 2-6 0-12-2-19-2Z" fill="#2b4874"/>
+  <path d="M66 76h28l-14 12z" fill="#efc048" stroke="#20355a" stroke-width="3.5" stroke-linejoin="round"/>
+  <circle cx="70" cy="73" r="4.6" fill="#20355a"/>
+  <circle cx="90" cy="73" r="4.6" fill="#20355a"/>
+  <path d="M66 92c4 4 8 6 14 6 5 0 10-2 14-6" fill="none" stroke="#ba7a2d" stroke-width="3.2" stroke-linecap="round"/>
 </svg>

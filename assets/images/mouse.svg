@@ -1,1 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><ellipse cx="52" cy="70" rx="28" ry="31" fill="#7d8088"/><ellipse cx="49" cy="41" rx="22" ry="19" fill="#7d8088"/><circle cx="35" cy="25" r="12" fill="#7d8088"/><circle cx="63" cy="22" r="12" fill="#7d8088"/><circle cx="35" cy="25" r="7" fill="#f6b8c9"/><circle cx="63" cy="22" r="7" fill="#f6b8c9"/><ellipse cx="50" cy="55" rx="12" ry="10" fill="#f7e4dd"/><circle cx="43" cy="39" r="3.5" fill="#23395f"/><circle cx="57" cy="39" r="3.5" fill="#23395f"/><circle cx="50" cy="49" r="4.5" fill="#f08ca6"/><path d="M77 67c18-1 30 8 34 23" fill="none" stroke="#7d8088" stroke-width="6" stroke-linecap="round"/><path d="M61 48h18M61 54h20M60 60h18" stroke="#23395f" stroke-width="2.5" stroke-linecap="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <defs>
+    <linearGradient id="mg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8d96b1"/>
+      <stop offset="1" stop-color="#6c7593"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="82" cy="142" rx="34" ry="10" fill="#314565" opacity=".18"/>
+  <path d="M100 112c14 3 24 12 29 26" fill="none" stroke="#5c6f91" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="82" cy="88" rx="34" ry="41" fill="url(#mg)" stroke="#20355a" stroke-width="4"/>
+  <circle cx="58" cy="48" r="16" fill="#8d96b1" stroke="#20355a" stroke-width="4"/>
+  <circle cx="96" cy="44" r="17" fill="#8d96b1" stroke="#20355a" stroke-width="4"/>
+  <circle cx="58" cy="48" r="8" fill="#f6b8c4"/>
+  <circle cx="96" cy="44" r="8" fill="#f6b8c4"/>
+  <ellipse cx="82" cy="78" rx="23" ry="24" fill="#fff6f4" stroke="#20355a" stroke-width="4"/>
+  <circle cx="72" cy="72" r="4.6" fill="#20355a"/>
+  <circle cx="94" cy="73" r="4.6" fill="#20355a"/>
+  <circle cx="84" cy="82" r="7.5" fill="#f6b8c4"/>
+  <path d="M78 90c3 3 7 4 12 4 4 0 8-1 11-4" fill="none" stroke="#20355a" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M91 83h25M90 89h24M90 77h22" stroke="#20355a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M76 83H54M76 89H52M76 77H54" stroke="#20355a" stroke-width="3" stroke-linecap="round"/>
+</svg>
